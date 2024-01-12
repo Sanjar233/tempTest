@@ -22,6 +22,6 @@ public class Commodity {
     private CommodityType type;
     private int price;
     private int quantity;
-//    @ManyToOne
-//    Purveyor owner;
+    @ManyToOne
+    Purveyor owner;
 }

@@ -8,5 +8,8 @@ import com.example.testProject.repositories.CommodityRepository;
 import java.util.List;
 
 public interface CommodityMapper {
-    List<CommodityResponse> showAll(List<Commodity> commodity);
+    CommodityResponse makeResponse(Commodity commodity);
+    List<CommodityResponse> getAllResponses(List<Commodity> all);
+
+    void addCommodity(CommodityRequest commodityRequest, Long purveyorId);
 }

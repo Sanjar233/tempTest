@@ -4,6 +4,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
+@Getter
+@Setter
 public class CommodityResponse {
     private Long id;
     private String name;

@@ -1,5 +1,6 @@
 package com.example.testProject.controller;
 
+import com.example.testProject.repositories.PurveyorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.example.testProject.dto.commodity.*;
@@ -22,14 +23,19 @@ import java.util.List;
 public class CommodityController {
     private final CommodityRepository commodityRepository;
     private final CommodityService commodityService;
-//    private final CommodityMapper commodityMapper;
-//    private final PurveyorRepository purveyorRepository;
-    @PostMapping("/add_new/{purveyor_id}")
-    public void add_new(@RequestBody CommodityRequest commodityRequest, @PathVariable Long purveyor_id) {
-        commodityService.addCommodity(commodityRequest, purveyor_id);
+    private final CommodityMapper commodityMapper;
+    private final PurveyorRepository purveyorRepository;
+    @PostMapping("/add_new/purveyorId:{purveyorId}")
+    public void add_new(@RequestBody CommodityRequest commodityRequest, @PathVariable Long purveyorId) {
+        commodityService.addCommodity(commodityRequest, purveyorId);
     }
-    @GetMapping("/allCommodity")
-    List<Commodity> products(){
-        return commodityRepository.findAll();
+    @GetMapping("/showAll")
+    List<CommodityResponse> showAll(){
+        return commodityService.showAll();
     }
+    @DeleteMapping("/delete/{cId}")
+    public void deleteCommodity(@PathVariable Long cId){
+        commodityService.deleteById(cId);}
+    //deleat
+    //change purveyor
 }

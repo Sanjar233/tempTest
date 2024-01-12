@@ -12,7 +12,6 @@ public class CommodityRequest {
     private String name;
     @Enumerated(EnumType.STRING)
     private String type;
-    private String description;
     private int price;
     private int quantity;
 }
