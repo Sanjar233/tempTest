@@ -18,7 +18,7 @@ public class Purveyor {
     private String name;
     private String address;
     private String phone_number;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
     List<Commodity>purveyorCommodities;
 
 

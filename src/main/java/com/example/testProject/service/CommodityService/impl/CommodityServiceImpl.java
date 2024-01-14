@@ -54,14 +54,30 @@ public class CommodityServiceImpl implements CommodityService {
         return commodityMapper.getAllResponses(commodityRepository.findAll());
     }
     @Override
-    public void deleteById(Long cId){
-        Optional<Commodity> commodity = commodityRepository.findById(cId);
-        if (commodity.isEmpty()){
-            throw new NotFoundException("Sent not existing id");
-        }
-
-        commodityRepository.deleteById(cId);
+    public void updateById(Long id, CommodityRequest commodityRequest){
+        //exceptions
+        commodityMapper.updateById(id,commodityRequest);
     }
-
+//    ______________________________
+//    @Override
+//    public void deleteById(Long pId, Long cId){
+//        Optional<Commodity> commodity = commodityRepository.findById(cId);
+//        if (commodity.isEmpty()){
+//            throw new NotFoundException("Sent not existing id");
+//        }
+//
+//        Optional <Purveyor> purveyor = purveyorRepository.findById(pId);
+//        List<Commodity> commodities = new ArrayList<>();
+//        commodities = purveyor.get().getPurveyorCommodities();
+//        Commodity commodity1 = new Commodity();
+//        commodity1 = commodity.get();
+//        commodities.remove(commodity1);
+//        Purveyor purveyor1 = new Purveyor();
+//        purveyor1.setPurveyorCommodities(commodities);
+//        commodity1.setOwner(null);
+//        purveyorRepository.save(purveyor1);
+//        commodityRepository.save(commodity1);
+//        commodityRepository.deleteById(cId);
+//    }
 
 }

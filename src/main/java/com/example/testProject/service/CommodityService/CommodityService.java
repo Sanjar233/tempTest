@@ -9,6 +9,8 @@ public interface CommodityService {
 
     List<CommodityResponse> showAll();
 
+    void updateById(Long id, CommodityRequest commodityRequest);
 
-    void deleteById(Long cId);
+
+//    void deleteById(Long pId,Long cId);
 }

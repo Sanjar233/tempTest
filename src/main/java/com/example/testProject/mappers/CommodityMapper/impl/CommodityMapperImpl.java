@@ -1,5 +1,6 @@
 package com.example.testProject.mappers.CommodityMapper.impl;
 import com.example.testProject.entites.Purveyor;
+import com.example.testProject.exception.NotFoundException;
 import com.example.testProject.mappers.CommodityMapper.CommodityMapper;
 import com.example.testProject.dto.commodity.CommodityRequest;
 import com.example.testProject.dto.commodity.CommodityResponse;
@@ -8,6 +9,7 @@ import com.example.testProject.repositories.PurveyorRepository;
 import com.example.testProject.enums.CommodityType;
 import com.example.testProject.entites.Commodity;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +57,21 @@ public class CommodityMapperImpl implements CommodityMapper{
         commodity.setOwner(purveyor.get());
         commodityRepository.save(commodity);
     }
-
+    @Override
+    public void updateById(Long id, CommodityRequest commodityRequest){
+        Optional<Commodity> commodity = commodityRepository.findById(id);
+        if (commodity.isEmpty())
+            throw new NotFoundException("the commodity with id: "+id+" is empty!", HttpStatus.BAD_REQUEST);
+        commodity.get().setPrice(commodityRequest.getPrice());
+        commodityRepository.save(commodity.get());
+    }
+    @Override
+    public void updateQuantity(Long id, int change){
+        Optional<Commodity> commodity = commodityRepository.findById(id);
+        if (commodity.isEmpty())
+            throw new NotFoundException("the commodity with id: "+id+" is empty!", HttpStatus.BAD_REQUEST);
+        commodity.get().setQuantity(commodity.get().getQuantity() + change);
+        commodityRepository.save(commodity.get());
+    }
 }
 

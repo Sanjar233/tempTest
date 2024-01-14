@@ -2,6 +2,7 @@ package com.example.testProject.service.PurveyorService.impl;
 
 import com.example.testProject.dto.commodity.CommodityResponse;
 import com.example.testProject.exception.BadRequestException;
+import com.example.testProject.exception.NotFoundException;
 import com.example.testProject.mappers.PurveyorMapper.PurveyorMapper;
 import com.example.testProject.repositories.PurveyorRepository;
 import com.example.testProject.service.PurveyorService.PurveyorService;
@@ -39,6 +40,13 @@ public class PurveyorServiceImpl implements PurveyorService {
     }
     @Override
     public void updateById(Long purveyorId,PurveyorRequest purveyorRequest){
-
+        //exceptions
+        purveyorMapper.updateById(purveyorId,purveyorRequest);
+    }
+    @Override
+    public void deleteById(Long id){
+        if (purveyorRepository.findById(id).isEmpty())
+            throw new NotFoundException("No such purveyor", HttpStatus.BAD_REQUEST);
+        purveyorRepository.deleteById(id);
     }
 }

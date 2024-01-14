@@ -12,4 +12,5 @@ public interface PurveyorMapper {
     void addPurveyor(PurveyorRequest purveyorRequest);
     PurveyorResponse makeResponse(Purveyor purveyor);
     List<PurveyorResponse> getAllResponses(List<Purveyor> all);
+    void updateById(Long purveyorId, PurveyorRequest purveyorRequest);
 }

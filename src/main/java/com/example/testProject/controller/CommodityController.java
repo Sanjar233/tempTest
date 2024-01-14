@@ -21,10 +21,7 @@ import java.util.List;
 @RequestMapping("/commodity")
 @AllArgsConstructor
 public class CommodityController {
-    private final CommodityRepository commodityRepository;
     private final CommodityService commodityService;
-    private final CommodityMapper commodityMapper;
-    private final PurveyorRepository purveyorRepository;
     @PostMapping("/add_new/purveyorId:{purveyorId}")
     public void add_new(@RequestBody CommodityRequest commodityRequest, @PathVariable Long purveyorId) {
         commodityService.addCommodity(commodityRequest, purveyorId);
@@ -33,9 +30,13 @@ public class CommodityController {
     List<CommodityResponse> showAll(){
         return commodityService.showAll();
     }
-    @DeleteMapping("/delete/{cId}")
-    public void deleteCommodity(@PathVariable Long cId){
-        commodityService.deleteById(cId);}
-    //deleat
+//    @DeleteMapping("/delete/purveyorId:{pId}/{cId}")
+//    public void deleteCommodity(@PathVariable Long pId,@PathVariable Long cId){
+//        commodityService.deleteById(pId,cId);}
+//    }
+    @GetMapping("/update/{id}")
+    void updateById(@PathVariable Long id,@RequestBody CommodityRequest commodityRequest){
+        commodityService.updateById(id,commodityRequest);
+    }
     //change purveyor
 }

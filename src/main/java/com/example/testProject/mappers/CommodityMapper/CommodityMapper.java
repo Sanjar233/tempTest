@@ -12,4 +12,7 @@ public interface CommodityMapper {
     List<CommodityResponse> getAllResponses(List<Commodity> all);
 
     void addCommodity(CommodityRequest commodityRequest, Long purveyorId);
+
+    void updateById(Long id, CommodityRequest commodityRequest);
+    void updateQuantity(Long id , int change);
 }

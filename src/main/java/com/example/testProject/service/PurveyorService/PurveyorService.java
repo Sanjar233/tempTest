@@ -1,6 +1,5 @@
 package com.example.testProject.service.PurveyorService;
 
-import com.example.testProject.dto.commodity.CommodityResponse;
 import com.example.testProject.dto.purveyor.PurveyorRequest;
 import com.example.testProject.dto.purveyor.PurveyorResponse;
 
@@ -13,4 +12,6 @@ public interface PurveyorService {
     void updateById(Long purveyorId, PurveyorRequest purveyorRequest);
 
     List<PurveyorResponse> showAll();
+
+    void deleteById(Long id);
 }
